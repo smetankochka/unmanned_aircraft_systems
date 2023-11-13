@@ -1,10 +1,9 @@
 class solver:
     def __init__(self, field_size):
-        # Задайте ваш конструктор
-        return
+        self.w, self.h = field_size
 
     def solve(self, telemetry):
-        # Задайте ваш алгоритм управления
+        self.x = telemetry["X"]
+        self.z = telemetry["Z"]
+        self.psi = telemetry["Heading"]
         return v, roll, scan
-
-    # Можете задать дополнительные методы, для упрощения метода solve
