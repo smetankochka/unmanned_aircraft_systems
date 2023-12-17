@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import math
+
 # ____________ Тут можно играться ______________
 scaleFactor: float = 1  # Размер изображения 1 - действительная величина
 # ______________________________________________
@@ -12,14 +13,15 @@ d_ps = 1.52e-5
 d_psi = math.radians(-30)
 d_f = 0.0048
 
+
 def calculate(A, B, C):  # Мозгов хватило только через высоту искать, результат не точный
     x1, y1 = A
     x2, y2 = B
     x3, y3 = C
 
-    centrix, centriy = x1/scaleFactor, y1/scaleFactor
-    cencircx, cencircy = x2/scaleFactor, y2/scaleFactor
-    cenpolyx, cenpolyy = x3/scaleFactor, y3/scaleFactor
+    centrix, centriy = x1 / scaleFactor, y1 / scaleFactor
+    cencircx, cencircy = x2 / scaleFactor, y2 / scaleFactor
+    cenpolyx, cenpolyy = x3 / scaleFactor, y3 / scaleFactor
 
     a = cencircy - centriy
     b = centrix - cencircx
@@ -31,8 +33,7 @@ def calculate(A, B, C):  # Мозгов хватило только через �
     x = (b_perp * c - b * c_perp) / determinant
     y = (a * c_perp - a_perp * c) / determinant
     perpendicular = (x, y)
-    #print("Координаты точки перпендикуляра:", perpendicular)
-
+    # print("Координаты точки перпендикуляра:", perpendicular)
 
     x = x - 32.5
     y = 32.5 - y
@@ -45,15 +46,10 @@ def calculate(A, B, C):  # Мозгов хватило только через �
     x *= k
     y *= k
 
-    xd = x*math.cos(d_psi) - y*math.sin(d_psi)
-    yd = x*math.sin(d_psi) + y*math.cos(d_psi)
+    xd = x * math.cos(d_psi) - y * math.sin(d_psi)
+    yd = x * math.sin(d_psi) + y * math.cos(d_psi)
 
-
-
-    print (yd+d_x,xd+d_z)
-
-
-
+    print(yd + d_x, xd + d_z)
 
 
 def drawCenter(img, figure=0):

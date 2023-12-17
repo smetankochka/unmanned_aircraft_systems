@@ -1,4 +1,4 @@
-from math import  degrees
+from math import degrees
 
 
 class solver:
@@ -78,7 +78,8 @@ class solver:
                         self.roll = 0
 
         elif not self.isUp:
-if self.downs < self.downValue:  # Летим направо
+
+            if self.downs < self.downValue:  # Летим направо
                 if x < 30 and int(degrees(psi)) not in range(-1,
                                                              1):  # Подлетаем к нижнему краю, снижаем скорость для виража
                     self.v = 15
@@ -145,8 +146,7 @@ if self.downs < self.downValue:  # Летим направо
                             self.roll = -20
                             self.goForward = False
                             self.rotationLeft2 = True
-elif self.rotationLeft2 and int(degrees(psi)) in range(-1,
-                                                                               1):  # Повернули (теперь мы вроде как на крайней правой полосе)
+                        elif self.rotationLeft2 and int(degrees(psi)) in range(-1, 1):  # Повернули (теперь мы вроде как на крайней правой полосе)
                             self.v = 25
                             self.roll = 0
                             self.goForward = False
@@ -154,13 +154,11 @@ elif self.rotationLeft2 and int(degrees(psi)) in range(-1,
                             self.isUp = True
                             self.goLeft = True
 
-                            print(x, y)
+            print(x, y)
 
-        if self.distanceToBorderX(x) and self.distanceToBorderY(y) and (
-                (self.lastScanningCoords[0] - x)  2 + (self.lastScanningCoords[1] - y)  2) ** 0.5 > 60:
-            self.scan = 1
-            self.lastScanningCoords = (x, y)
-        else:
-            self.scan = 0
-
-        return self.v, self.roll, self.scan
+            if self.distanceToBorderX(x) and self.distanceToBorderY(y) and ((self.lastScanningCoords[0] - x)2 + (self.lastScanningCoords[1] - y)2) ** 0.5 > 60:
+                self.scan = 1
+                self.lastScanningCoords = (x, y)
+            else:
+                self.scan = 0
+            return self.v, self.roll, self.scan
