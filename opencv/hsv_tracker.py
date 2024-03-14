@@ -23,9 +23,9 @@ cv2.createTrackbar('V2', 'settings', 0, 255, nothing)
 crange = [0, 0, 0, 0, 0, 0]
 
 while True:
-    img = cv2.imread('test2.bmp')
+    img = cv2.imread('taska_slice.png')
     img = cv2.medianBlur(img, 5)
-    rgb = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+    rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     # считываем значения бегунков
     lbr = cv2.getTrackbarPos('H1', 'settings')
     lbg = cv2.getTrackbarPos('S1', 'settings')
