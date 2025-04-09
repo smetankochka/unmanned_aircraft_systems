@@ -20,12 +20,12 @@ def detectCar(image, camera_zxy, heading):
     f = 6.1 * 1e-3  # Фокусное расстояние
     ph = 7.8 * 1e-6  # высота пикселя
     pw = 9.2 * 1e-6  # ширина пикселя
-    resolution = (720, 1280)  # Размер изображения в пикселях
+    resolution = (640, 380)  # Размер изображения в пикселях
     height, width = image.shape[:2]
 
     # ------------ ПОИСК ИЗОБРАЖЕНИЯ -----------
-    lower_mask = np.array([255, 228, 133], dtype="uint8")
-    upper_mask = np.array([255, 255, 218], dtype="uint8")
+    lower_mask = np.array([178, 40, 43], dtype="uint8")
+    upper_mask = np.array([222, 91, 82], dtype="uint8")
     mask = cv2.inRange(image, lower_mask, upper_mask)
     blurred_image = cv2.GaussianBlur(mask, (15, 15), 0)
     # ------------------------------------------
@@ -52,12 +52,8 @@ def detectCar(image, camera_zxy, heading):
     return r_x, r_y
 
 
-image = cv2.imread('taska_slice.png')
+image = cv2.imread('img.png')
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 print(detectCar(image, (325.49, 418.07, 99.88), -52.49))
 cv2.imshow('image', image)
 cv2.waitKey()
-
-
-(357.57408105573774, 448.8475339704918)
-(380.31913382295085, 448.8475339704918)

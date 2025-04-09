@@ -1,5 +1,4 @@
 import cv2
-import matplotlib
 import numpy as np
 
 
@@ -29,8 +28,9 @@ contours, hierarchy = cv2.findContours(thresh, cv2.RETR_LIST, cv2.CHAIN_APPROX_S
 for c in contours:
     rect = cv2.minAreaRect(c)
     box = cv2.boxPoints(rect)
-    box = np.int0(box)
+    box = np.int32(box)
     cv2.drawContours(thresh, [box], -1, (250, 0, 0), 3)
+
 #     epsilon = 0.18 * cv2.arcLength(c, True)y
 #     approx = cv2.approxPolyDP(c, epsilon, True)
 #     if len(approx) == 4:
